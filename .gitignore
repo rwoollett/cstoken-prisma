@@ -11,9 +11,6 @@ scratch.txt
 api.http
 cstoken.env
 compose.env
-IntrospectionQuery.*
-!IntrospectionQuery.graphql
-GeneratedCode.hpp
 set_env.sh
 
 # testing

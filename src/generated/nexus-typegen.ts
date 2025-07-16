@@ -14,10 +14,6 @@ declare global {
 }
 
 export interface NexusGenInputs {
-  RangePort: { // input type
-    from: number; // Int!
-    to: number; // Int!
-  }
 }
 
 export interface NexusGenEnums {
@@ -32,45 +28,7 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
-  AcquireCS: { // root type
-    acquiredAt: string; // String!
-    ip: string; // String!
-    sourceIp: string; // String!
-  }
-  Client: { // root type
-    connected: boolean; // Boolean!
-    connectedAt: string; // String!
-    disconnectedAt: string; // String!
-    host: string; // String!
-    id: number; // Int!
-    ip: string; // String!
-    name: string; // String!
-    processId?: string | null; // String
-    requestParent: NexusGenRootTypes['RequestParent']; // RequestParent!
-  }
-  ConnectedClient: { // root type
-    connectedAt: string; // String!
-    processId: string; // String!
-    sourceIp: string; // String!
-  }
-  DisconnectedClient: { // root type
-    disconnectedAt: string; // String!
-    sourceIp: string; // String!
-  }
-  Mutation: {};
   Query: {};
-  RequestCS: { // root type
-    originalIp: string; // String!
-    parentIp: string; // String!
-    relayed: boolean; // Boolean!
-    requestedAt: string; // String!
-    sourceIp: string; // String!
-  }
-  RequestParent: { // root type
-    clientIp: string; // String!
-    id: number; // Int!
-  }
-  Subscription: {};
 }
 
 export interface NexusGenInterfaces {
@@ -84,154 +42,18 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
-  AcquireCS: { // field return type
-    acquiredAt: string; // String!
-    ip: string; // String!
-    sourceIp: string; // String!
-  }
-  Client: { // field return type
-    connected: boolean; // Boolean!
-    connectedAt: string; // String!
-    disconnectedAt: string; // String!
-    host: string; // String!
-    id: number; // Int!
-    ip: string; // String!
-    name: string; // String!
-    processId: string | null; // String
-    requestParent: NexusGenRootTypes['RequestParent']; // RequestParent!
-  }
-  ConnectedClient: { // field return type
-    connectedAt: string; // String!
-    processId: string; // String!
-    sourceIp: string; // String!
-  }
-  DisconnectedClient: { // field return type
-    disconnectedAt: string; // String!
-    sourceIp: string; // String!
-  }
-  Mutation: { // field return type
-    connectClientCS: NexusGenRootTypes['ConnectedClient']; // ConnectedClient!
-    createAcquireCS: NexusGenRootTypes['AcquireCS']; // AcquireCS!
-    createClient: NexusGenRootTypes['Client']; // Client!
-    createRequestCS: NexusGenRootTypes['RequestCS']; // RequestCS!
-    disconnectClientCS: NexusGenRootTypes['DisconnectedClient']; // DisconnectedClient!
-  }
   Query: { // field return type
-    getClients: Array<NexusGenRootTypes['Client'] | null>; // [Client]!
-  }
-  RequestCS: { // field return type
-    originalIp: string; // String!
-    parentIp: string; // String!
-    relayed: boolean; // Boolean!
-    requestedAt: string; // String!
-    sourceIp: string; // String!
-  }
-  RequestParent: { // field return type
-    clientIp: string; // String!
-    id: number; // Int!
-  }
-  Subscription: { // field return type
-    acquireCS_Created: NexusGenRootTypes['AcquireCS'] | null; // AcquireCS
-    clientCS_Connected: NexusGenRootTypes['ConnectedClient'] | null; // ConnectedClient
-    clientCS_Disconnected: NexusGenRootTypes['DisconnectedClient'] | null; // DisconnectedClient
-    requestCS_Created: NexusGenRootTypes['RequestCS'] | null; // RequestCS
+    ok: boolean; // Boolean!
   }
 }
 
 export interface NexusGenFieldTypeNames {
-  AcquireCS: { // field return type name
-    acquiredAt: 'String'
-    ip: 'String'
-    sourceIp: 'String'
-  }
-  Client: { // field return type name
-    connected: 'Boolean'
-    connectedAt: 'String'
-    disconnectedAt: 'String'
-    host: 'String'
-    id: 'Int'
-    ip: 'String'
-    name: 'String'
-    processId: 'String'
-    requestParent: 'RequestParent'
-  }
-  ConnectedClient: { // field return type name
-    connectedAt: 'String'
-    processId: 'String'
-    sourceIp: 'String'
-  }
-  DisconnectedClient: { // field return type name
-    disconnectedAt: 'String'
-    sourceIp: 'String'
-  }
-  Mutation: { // field return type name
-    connectClientCS: 'ConnectedClient'
-    createAcquireCS: 'AcquireCS'
-    createClient: 'Client'
-    createRequestCS: 'RequestCS'
-    disconnectClientCS: 'DisconnectedClient'
-  }
   Query: { // field return type name
-    getClients: 'Client'
-  }
-  RequestCS: { // field return type name
-    originalIp: 'String'
-    parentIp: 'String'
-    relayed: 'Boolean'
-    requestedAt: 'String'
-    sourceIp: 'String'
-  }
-  RequestParent: { // field return type name
-    clientIp: 'String'
-    id: 'Int'
-  }
-  Subscription: { // field return type name
-    acquireCS_Created: 'AcquireCS'
-    clientCS_Connected: 'ConnectedClient'
-    clientCS_Disconnected: 'DisconnectedClient'
-    requestCS_Created: 'RequestCS'
+    ok: 'Boolean'
   }
 }
 
 export interface NexusGenArgTypes {
-  Mutation: {
-    connectClientCS: { // args
-      processId: string; // String!
-      sourceIp: string; // String!
-    }
-    createAcquireCS: { // args
-      ip: string; // String!
-      sourceIp: string; // String!
-    }
-    createClient: { // args
-      connected: boolean; // Boolean!
-      host: string; // String!
-      ip: string; // String!
-      name: string; // String!
-    }
-    createRequestCS: { // args
-      originalIp: string; // String!
-      parentIp: string; // String!
-      relayed: boolean; // Boolean!
-      sourceIp: string; // String!
-    }
-    disconnectClientCS: { // args
-      sourceIp: string; // String!
-    }
-  }
-  Query: {
-    getClients: { // args
-      range: NexusGenInputs['RangePort']; // RangePort!
-    }
-  }
-  Subscription: {
-    clientCS_Connected: { // args
-      sourceIp: string; // String!
-    }
-    clientCS_Disconnected: { // args
-      sourceIp: string; // String!
-    }
-  }
 }
 
 export interface NexusGenAbstractTypeMembers {
@@ -242,7 +64,7 @@ export interface NexusGenTypeInterfaces {
 
 export type NexusGenObjectNames = keyof NexusGenObjects;
 
-export type NexusGenInputNames = keyof NexusGenInputs;
+export type NexusGenInputNames = never;
 
 export type NexusGenEnumNames = never;
 
