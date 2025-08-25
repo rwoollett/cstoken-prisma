@@ -12,6 +12,7 @@ api.http
 cstoken.env
 compose.env
 set_env.sh
+package-lock.json
 
 # testing
 tmp.html
