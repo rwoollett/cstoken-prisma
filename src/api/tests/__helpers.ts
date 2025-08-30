@@ -1,7 +1,8 @@
-import getPort, { makeRange } from "get-port";
+//import getPort, { makeRange } from "get-port";
 import { join } from "path";
 import { PrismaClient } from "@prisma/client";
 import { execSync } from "child_process";
+import "dotenv/config";
 
 type TestContext = {
   prisma: PrismaClient;
@@ -15,11 +16,14 @@ interface TestContentArgs {
 
 const prismaBinary = join(__dirname, "../../..", "node_modules", ".bin", "prisma");
 
-export function createTestContext(arg: TestContentArgs ): TestContext {
+export function createTestContext(arg: TestContentArgs): TestContext {
   let ctx = {} as TestContext;
 
   const prismaCtx = prismaTestContext();
-  execSync(`${prismaBinary} db push `,);
+  execSync(
+    `DATABASE_URL="${process.env.DATABASE_TEST_URL}" ${prismaBinary} db push`,
+    { stdio: "inherit" }
+  );
 
   beforeEach(async () => {
     const prisma = await prismaCtx.before();
@@ -45,7 +49,11 @@ function prismaTestContext() {
           }
         }
       });
-      execSync(`${prismaBinary} db seed `,);
+      execSync(
+        `DATABASE_URL="${process.env.DATABASE_TEST_URL}" ${prismaBinary} db seed`,
+        { stdio: "inherit" }
+      );
+
       return prismaClient;
     },
     async after() {
