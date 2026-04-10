@@ -129,6 +129,7 @@ This is the structure of the files in the project:
     ├── jest-config.js
     ├── kubedb                  # Sh script to rollout to container postgres database
     ├── package.json
+    ├── package-lock.json
     ├── README.md
     └── tsconfig.json
 ```

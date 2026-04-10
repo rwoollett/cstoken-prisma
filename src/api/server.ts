@@ -3,6 +3,8 @@
 import cookieSession from 'cookie-session';
 import express from 'express';
 import { createServer } from 'http';
+import "dotenv/config";
+
 
 const app = express()
 
