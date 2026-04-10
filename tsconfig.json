@@ -2,7 +2,8 @@
   "compilerOptions": {
     "jsx": "preserve",
     "target": "ES2018",
-    "module": "commonjs",
+    "module": "node16",
+    "types" : ["node", "jest"],
     "lib": [
       "ESNext",
       "esnext.asynciterable",
@@ -19,7 +20,7 @@
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "resolveJsonModule": true,
     "isolatedModules": true
   },
