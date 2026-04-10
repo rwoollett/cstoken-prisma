@@ -1,5 +1,3 @@
-// import bodyParser from 'body-parser';
-// import cors from 'cors';
 import cookieSession from 'cookie-session';
 import express from 'express';
 import { createServer } from 'http';
