@@ -7,7 +7,7 @@
     "dev": "ts-node-dev --transpile-only src/api/server.ts",
     "start": "ts-node --transpile-only src/api/server.ts",
     "generate": "prisma generate",
-    "test": "npm run generate && jest"
+    "test": "dotenv -e .env.db -e .env.port -e .env.local -- npx jest"
   },
   "keywords": [
     "nexus",
