@@ -1,4 +1,3 @@
-//import getPort, { makeRange } from "get-port";
 import { join } from "path";
 import { PrismaClient } from "@prisma/client";
 import { execSync } from "child_process";
