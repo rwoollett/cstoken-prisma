@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Prisma } from "@prisma/client";
 
 (async () => {
   const prismaTest = new PrismaClient({
@@ -25,10 +25,20 @@ import { PrismaClient } from "@prisma/client";
   await prismaTest.$executeRaw` INSERT INTO public."Client"(	host, ip, name, connected)	VALUES ('hostmachine', 7020, 'netproc7020', false);  `;
   await prismaTest.$executeRaw` INSERT INTO public."Client"(	host, ip, name, connected)	VALUES ('hostmachine', 7030, 'netproc7030', false);  `;
   await prismaTest.$executeRaw` INSERT INTO public."Client"(	host, ip, name, connected)	VALUES ('hostmachine', 7040, 'netproc7040', false);  `;
-  await prismaTest.$executeRaw` INSERT INTO public."Client"(	host, ip, name, connected)	VALUES ('hostmachine', 7070, 'netproc7070', false);  `;
-  await prismaTest.$executeRaw` INSERT INTO public."Client"(	host, ip, name, connected)	VALUES ('hostmachine', 7072, 'netproc7072', false);  `;
-  await prismaTest.$executeRaw` INSERT INTO public."Client"(	host, ip, name, connected)	VALUES ('hostmachine', 7074, 'netproc7074', false);  `;
-  await prismaTest.$executeRaw` INSERT INTO public."Client"(	host, ip, name, connected)	VALUES ('hostmachine', 7076, 'netproc7076', false);  `;
+
+  const values = [];
+  for (let i = 7070; i <= 7098; i += 2) {
+    values.push(
+      Prisma.sql`('hostmachine', ${i}, ${`netproc${i}`}, false)`
+    );
+  }
+
+  await prismaTest.$executeRaw`
+    INSERT INTO public."Client"
+      (host, ip, name, connected)
+    VALUES
+      ${Prisma.join(values)};
+  `;
 
   prismaTest.$disconnect();
 
