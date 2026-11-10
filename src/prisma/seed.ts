@@ -26,10 +26,17 @@ import { PrismaClient, Prisma } from "@prisma/client";
   await prismaTest.$executeRaw` INSERT INTO public."Client"(	host, ip, name, connected)	VALUES ('hostmachine', 7030, 'netproc7030', false);  `;
   await prismaTest.$executeRaw` INSERT INTO public."Client"(	host, ip, name, connected)	VALUES ('hostmachine', 7040, 'netproc7040', false);  `;
 
-  const values = [];
-  for (let i = 7070; i <= 7098; i += 2) {
-    values.push(
+  const valuesNetProc = [];
+  for (let i = 7070; i <= 7122; i += 2) {
+    valuesNetProc.push(
       Prisma.sql`('hostmachine', ${i}, ${`netproc${i}`}, false)`
+    );
+  }
+
+  const valuesDCDev = [];
+  for (let i = 6070; i <= 6122; i += 2) {
+    valuesDCDev.push(
+      Prisma.sql`('localhost', ${i}, ${`netproc${i}`}, false)`
     );
   }
 
@@ -37,7 +44,14 @@ import { PrismaClient, Prisma } from "@prisma/client";
     INSERT INTO public."Client"
       (host, ip, name, connected)
     VALUES
-      ${Prisma.join(values)};
+      ${Prisma.join(valuesNetProc)};
+  `;
+
+  await prismaTest.$executeRaw`
+    INSERT INTO public."Client"
+      (host, ip, name, connected)
+    VALUES
+      ${Prisma.join(valuesDCDev)};
   `;
 
   prismaTest.$disconnect();
